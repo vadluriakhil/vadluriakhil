@@ -1,0 +1,12 @@
+import torch
+import torch.nn as nn
+import torchvision.models as models
+import torchvision.transforms as transforms
+from PIL import Image
+
+# Load the pre-trained ResNet model
+resnet = models.resnet50(pretrained=True)
+# Remove the classification layer (final fully connected layer)
+resnet = nn.Sequential(*list(resnet.children())[:-1])
+# Set the model to evaluation mode
+resnet.eval()
